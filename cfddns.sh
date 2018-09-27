@@ -32,11 +32,11 @@ then
 	exit 1
 fi
 
-echo "Attempting to set ${DNS_FQDN} to ${IP}..."
+# echo "Attempting to set ${DNS_FQDN} to ${IP}..."
 
 
 # ==== Finding the Zone ID ====
-echo "Pulling known ZONES..."
+# echo "Pulling known ZONES..."
 
 while IFS='.' read -ra FQDN_SEGMENTS; do
 	SEGMENT=""
@@ -50,7 +50,7 @@ while IFS='.' read -ra FQDN_SEGMENTS; do
 				SEGMENT=${FQDN_SEGMENTS[idx]}.$SEGMENT
 			fi
 
-			echo "Searching ${SEGMENT}..."
+			# echo "Searching ${SEGMENT}..."
 			RESULT=`curl -s -X GET "https://api.cloudflare.com/client/v4/zones?name=$SEGMENT" -H "X-Auth-Email: ${AUTH_EMAIL}" -H "X-Auth-Key: ${AUTH_KEY}" -H "Content-Type: application/json"`
 			RESULTS_COUNT=`echo $RESULT | jq .result_info.count`
 
