@@ -67,7 +67,7 @@ while IFS='.' read -ra FQDN_SEGMENTS; do
 done <<< "$DNS_FQDN"
 
 # ==== Finding DNS Record ID ====
-echo "Finding DNS Record..."
+# echo "Finding DNS Record..."
 RESULT=`curl -s -X GET "https://api.cloudflare.com/client/v4/zones/${ZONE_ID}/dns_records?name=${DNS_FQDN}&type=${DNS_TYPE}" -H "X-Auth-Email: ${AUTH_EMAIL}" -H "X-Auth-Key: ${AUTH_KEY}" -H "Content-Type: application/json"`
 RESULTS_COUNT=`echo $RESULT | jq .result_info.count`
 
@@ -83,13 +83,13 @@ fi
 
 
 # ==== Get External IP Address ====
-echo "Getting external IP address"
+# echo "Getting external IP address"
 IP=$(getMachineExternalIP)
 
 
-echo "[DEBUG] Zone id: ${ZONE_ID}"
-echo "[DEBUG] Record id: ${DNS_RECORD_ID}"
-echo "[DEBUG] IP: ${IP}"
+# echo "[DEBUG] Zone id: ${ZONE_ID}"
+# echo "[DEBUG] Record id: ${DNS_RECORD_ID}"
+# echo "[DEBUG] IP: ${IP}"
 
 # ==== Send PUT Request ====
 RESULT=`curl -s -X PUT "https://api.cloudflare.com/client/v4/zones/${ZONE_ID}/dns_records/${DNS_RECORD_ID}" \
