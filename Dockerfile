@@ -1,10 +1,10 @@
 FROM alpine:latest
 
-ENV IP_PROVIDER="https://ipinfo.io/ip"
-ENV AUTH_KEY="NOT_INITIALIZED"
-ENV AUTH_EMAIL="NOT_INITIALIZED"
-ENV DNS_FQDN="NOT_INITIALIZED"
-ENV DNS_TYPE="A"
+ENV IP_PROVIDER="https://ipinfo.io/ip" \
+    AUTH_KEY="NOT_INITIALIZED" \
+    AUTH_EMAIL="NOT_INITIALIZED" \
+    DNS_FQDN="NOT_INITIALIZED" \
+    DNS_TYPE="A"
 
 RUN apk update && apk add --no-cache \
     bash \
