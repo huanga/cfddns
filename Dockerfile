@@ -11,7 +11,16 @@ RUN apk update && apk add --no-cache \
     curl \
     openssl \
     jq \
-    dumb-init
+    dumb-init && \
+    rm -rf /var/cache/apk \
+    /lib/apk/db/installe \
+    /lib/apk/db/scripts.tar \
+    /lib/apk/db/triggers \
+    /etc/apk/world \
+    /lib/apk/db/lock \
+    /etc/shells \
+    /var/cache/misc \
+    /var/cache/apk 
 
 COPY cfddns.sh /usr/local/bin/
 
