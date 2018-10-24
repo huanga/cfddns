@@ -13,7 +13,7 @@ RUN apk update && apk add --no-cache \
     jq \
     dumb-init && \
     rm -rf /var/cache/apk \
-    /lib/apk/db/installe \
+    /lib/apk/db/installed \
     /lib/apk/db/scripts.tar \
     /lib/apk/db/triggers \
     /etc/apk/world \
