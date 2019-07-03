@@ -16,8 +16,9 @@ checkEnvironments(){
 VERIFY_AUTH_KEY=$(checkEnvironments "AUTH_KEY")
 VERIFY_AUTH_EMAIL=$(checkEnvironments "AUTH_EMAIL")
 VERIFY_DNS_FQDN=$(checkEnvironments "DNS_FQDN")
+VERIFY_DNS_PROXIED=$(checkEnvironments "DNS_PROXIED")
 
-FAILED=$VERIFY_AUTH_KEY$VERIFY_AUTH_EMAIL$VERIFY_DNS_FQDN
+FAILED=$VERIFY_AUTH_KEY$VERIFY_AUTH_EMAIL$VERIFY_DNS_FQDN$VERIFY_DNS_PROXIED
 
 if [ "$FAILED" != "" ]
 then
@@ -25,6 +26,7 @@ then
 	echo "Usage: "
 	echo "docker run --rm \\"
 	echo "    -e DNS_FQDN=test.example.com \\"
+	echo "    -e DNS_PROXIED=false\\"
         echo "    -e AUTH_KEY=1234567890abcdef1234567890abcdef \\"
 	echo "    -e AUTH_EMAIL=123@pop.com \\"
 	echo "    -e IP_PROVIDER=http://ifconfig.me \\"
@@ -96,8 +98,7 @@ RESULT=`curl -s -X PUT "https://api.cloudflare.com/client/v4/zones/${ZONE_ID}/dn
      -H "X-Auth-Email: ${AUTH_EMAIL}" \
      -H "X-Auth-Key: ${AUTH_KEY}" \
      -H "Content-Type: application/json" \
-     --data '{"type": "'"${DNS_TYPE}"'", "name": "'"${DNS_FQDN}"'", "content": "'"${IP}"'", "ttl": 120, "proxied": true}'`
-
+     --data '{"type": "'"${DNS_TYPE}"'", "name": "'"${DNS_FQDN}"'", "content": "'"${IP}"'", "proxied": '${DNS_PROXIED}'}'`
 RESULT=`echo $RESULT | jq .success`
 
 if [ $RESULT == "true" ]; then

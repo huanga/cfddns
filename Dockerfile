@@ -4,7 +4,8 @@ ENV IP_PROVIDER="https://ipinfo.io/ip" \
     AUTH_KEY="NOT_INITIALIZED" \
     AUTH_EMAIL="NOT_INITIALIZED" \
     DNS_FQDN="NOT_INITIALIZED" \
-    DNS_TYPE="A"
+    DNS_TYPE="A" \
+    DNS_PROXIED="NOT_INITIALIZED"
 
 RUN apk update && apk add --no-cache \
     bash \
