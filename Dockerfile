@@ -7,7 +7,7 @@ ENV IP_PROVIDER="https://ipinfo.io/ip" \
     DNS_TYPE="A" \
     DNS_PROXIED="NOT_INITIALIZED"
 
-RUN apk update && apk add --no-cache \
+RUN apk update && apk upgrade --no-cache && apk add --no-cache \
     bash \
     curl \
     openssl \
